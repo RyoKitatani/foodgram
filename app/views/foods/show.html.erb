@@ -1,2 +1,24 @@
 <h1>Foods#show</h1>
 <p>Find me in app/views/foods/show.html.erb</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ご飯画像</th>
+      <th><%= attachment_image_tag @food, :image, :fill, 50, 50, format: 'jpeg' %></th>
+    </tr>
+    <tr>
+      <th>お店</th>
+      <th><%= @food.shop_name %></th>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <th><%= @food.caption %></th>
+    </tr>
+    <tr>
+      <% if @food.user_id = current_user.id %>
+      <th><%= link_to "削除", food_path(@food), method: :delete %></th>
+      <% end %>
+    </tr>
+  </thead>
+  </table>

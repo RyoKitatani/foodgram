@@ -5,6 +5,7 @@
   <p><%= f.attachment_field:image %></p>
   <h4>お店</h4>
   <p><%= f.text_field :shop_name %></p>
-  <p><%= f.text_field :caption %></p>
+  <h4>キャプション</h4>
+  <p><%= f.text_area :caption %></p>
   <p><%= f.submit "投稿" %></p>
 <% end %>

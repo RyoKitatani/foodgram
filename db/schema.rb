@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_163605) do
     t.text "shop_name"
     t.string "image_id"
     t.text "caption"
-    t.string "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
