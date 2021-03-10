@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   
   def index
-    @foods = Food.all.order(id: "DESC")
+    @foods = Food.page(params[:page]).reverse_order
     @food = Food.new
   end
   
@@ -9,7 +9,7 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     @food.save
-    @foods = Food.all.order(id: "DESC")
+    @foods = Food.page(params[:page]).reverse_order
   end
 
   def destroy
