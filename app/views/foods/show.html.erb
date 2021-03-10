@@ -13,12 +13,12 @@
               <% end %>
             </p>
             <p class="card-text">説明:<%= @food_detail.caption %></th><br>
-            <span><i class="fas fa-user">ユーザー:</i> By <%= @food_detail.user.name %></span>
+            <span><i class="fas fa-user">ユーザー:</i> By <%= @food_detail.user.name %></span><br>
               <% if @food_detail.user_id == current_user.id %>
-                <%= link_to "編集", edit_food_path %>
-                <%= link_to "削除", food_path(@food_detail), method: :delete %>
+                <span><i class="fas fa-edit"></i>|<%= link_to "編集", edit_food_path %></span><br>
+                <span><i class="fas fa-trash-alt"></i> |<%= link_to "削除", food_path(@food_detail), method: :delete %></span><br>
               <% end %>
-              <%= link_to "戻る", foods_path %></th>
+              <span><i class="fas fa-backward"></i> |<%= link_to "戻る", foods_path %></span>
               <% if @food_detail.liked_by?(current_user) %>
               <p>
                 <%= link_to food_likes_path(@food_detail), method: :delete do %>

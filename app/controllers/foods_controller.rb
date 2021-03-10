@@ -26,6 +26,13 @@ class FoodsController < ApplicationController
   end
 
   def edit
+    @food_detail = Food.find(params[:id])
+  end
+  
+  def update
+     @food_detail = Food.find(params[:id])
+     @food_detail.update(food_params)
+     redirect_to food_path(@food_detail)
   end
   
   private
