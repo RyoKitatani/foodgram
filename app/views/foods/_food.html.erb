@@ -17,7 +17,20 @@
                 <p class="card-text">説明:<%= food.caption %></p>
                 <span><i class="fas fa-user"></i>投稿者:  <%= food.user.name %></span> | 
                 <span><i class="fas fa-comments"></i><%= link_to "#{food.food_comments.count}", food_path(food.id) %></span> | 
-                <span><i class="fas fa-hand-holding-heart"></i><%= link_to "#{food.likes.count}", food_path(food.id) %></span>
+                <span>
+                <% if food.liked_by?(current_user) %>
+                <p>
+                  <%= link_to food_likes_path(food), method: :delete do %>
+                  　❤︎<%= food.likes.count %> いいね
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to food_likes_path(food), method: :post do %>
+                    ♡<%= food.likes.count %> いいね
+                  <% end %>
+                </p>
+            <% end %>
               </div>
             </div>
           </div>
