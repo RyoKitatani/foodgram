@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "foods#index"
   resources :foods, only:[:index, :show, :edit, :update, :create, :destroy] do
     resources :food_comments, only:[:create, :destroy]
+    resource :likes, only: [:create, :destroy]
   end
   
 end
