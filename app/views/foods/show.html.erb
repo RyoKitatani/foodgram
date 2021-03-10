@@ -4,6 +4,10 @@
 <table class="table">
   <thead>
     <tr>
+      <th>ユーザー名</th>
+      <th><%= @food.user.name%></th>
+    </tr>
+    <tr>
       <th>ご飯画像</th>
       <th><%= attachment_image_tag @food, :image, :fill, 50, 50, format: 'jpeg' %></th>
     </tr>
@@ -16,9 +20,13 @@
       <th><%= @food.caption %></th>
     </tr>
     <tr>
-      <% if @food.user_id = current_user.id %>
+      <% if @food.user_id == current_user.id %>
+      <th><%= link_to "編集", edit_food_path %></th>
       <th><%= link_to "削除", food_path(@food), method: :delete %></th>
       <% end %>
+      <th></th>
+      <th></th>
+      <th><%= link_to "戻る", foods_path %></th>
     </tr>
   </thead>
   </table>

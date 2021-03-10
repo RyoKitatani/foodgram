@@ -1,15 +1,15 @@
 class FoodsController < ApplicationController
   
   def index
+    @foods = Food.all.order(id: "DESC")
     @food = Food.new
-    @foods = Food.all
   end
   
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     @food.save
-    redirect_to foods_path
+    @foods = Food.all.order(id: "DESC")
   end
 
   def destroy

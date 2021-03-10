@@ -1,30 +1,14 @@
-<%= render "foods/new", food: @food %>
-
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-8">
-    <% @foods.each do |food| %>
-      <%= link_to food_path(food) do %>
-      <table class="table text-center">
-        <tr>
-          <th>ご飯画像</th>
-          <th><%= attachment_image_tag food, :image, :fill, 50, 50, format: 'jpeg' %></th>
-        </div>
-        </tr>
-        <tr>
-          <th>お店</th>
-          <th><%= food.shop_name %></th>
-        </tr>
-        <tr>
-          <th>説明</th>
-          <th><%= food.caption %></th>
-        </tr>
-      </thead>
-      </table>
-      <br>
-      <% end %>
-    <% end %>
+    <div class="col-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        新規投稿
+      </button>
     </div>
   </div>
 </div>
- 
+<div class="card-list-containar py-5 d-flex justify-content-between foods">
+<%= render "foods/food", foods: @foods %>
+</div>    
+
+<%= render "foods/new", food: @food %>
