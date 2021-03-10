@@ -21,23 +21,25 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+            <% if current_page?(root_path) %>
             <li class="nav-item">
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 新規投稿
               </button>
             </li>
+            <% end %>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark'  %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white btn btn-primary'  %>
             </li>
             <li class="nav-item">
-              <%= link_to "投稿", root_path, class: 'nav-link text-dark'  %>
+              <%= link_to "グルメ一覧", root_path, class: 'nav-link text-white btn btn-primary'  %>
             </li>
           <% else %> 
             <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark'  %>
+              <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-white btn btn-primary'  %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark'  %>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white btn btn-primary'  %>
             </li>
           <% end %>
           </ul>

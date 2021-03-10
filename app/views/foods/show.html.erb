@@ -1,32 +1,47 @@
-<h1>Foods#show</h1>
-<p>Find me in app/views/foods/show.html.erb</p>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>ユーザー名</th>
-      <th><%= @food.user.name%></th>
-    </tr>
-    <tr>
-      <th>ご飯画像</th>
-      <th><%= attachment_image_tag @food, :image, :fill, 50, 50, format: 'jpeg' %></th>
-    </tr>
-    <tr>
-      <th>お店</th>
-      <th><%= @food.shop_name %></th>
-    </tr>
-    <tr>
-      <th>説明</th>
-      <th><%= @food.caption %></th>
-    </tr>
-    <tr>
-      <% if @food.user_id == current_user.id %>
-      <th><%= link_to "編集", edit_food_path %></th>
-      <th><%= link_to "削除", food_path(@food), method: :delete %></th>
+<div class="container">
+  <div class="row">
+    <div class="card w-50 mx-auto mb-5 px-auto shadow-lg d-flex justify-content-between">
+      <%= link_to food_path(@food_detail) do %>
+          <%= attachment_image_tag @food_detail, :image, width: '100%', height: '100%', format: 'jpeg', class:"d-block mx-auto" %>
       <% end %>
-      <th></th>
-      <th></th>
-      <th><%= link_to "戻る", foods_path %></th>
-    </tr>
-  </thead>
-  </table>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-body">
+            <p class="card-title">
+              <%= link_to(food_path(@food_detail), class:"text-dark") do %>
+                <strong><i class="far fa-flag"></i><span> <%= @food_detail.shop_name %></span></strong>
+              <% end %>
+            </p>
+            <p class="card-text">説明:<%= @food_detail.caption %></th><br>
+            <span><i class="fas fa-user">ユーザー:</i> By <%= @food_detail.user.name %></span>
+              <% if @food_detail.user_id == current_user.id %>
+                <%= link_to "編集", edit_food_path %>
+                <%= link_to "削除", food_path(@food_detail), method: :delete %>
+              <% end %>
+              <%= link_to "戻る", foods_path %></th>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+              <div class="new-comment">
+                <%= form_with(model:[@food_detail, @food_comment], local: true) do |f| %>
+                  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+                  <%= f.submit "送信する" %>
+                <% end %>
+                <p>コメント件数：<%= @food_detail.food_comments.count %></p>
+                <% @food_detail.food_comments.each do |food_comment| %>
+                  <%= food_comment.user.name %>
+                  <%= food_comment.created_at.strftime('%Y/%m/%d') %><%= food_comment.comment %>
+                  <% if food_comment.user == current_user %>
+                  <%= link_to "削除", food_food_comment_path(food_comment.food, food_comment), method: :delete %>
+                  <% end %><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <%= render "foods/new", food: @food %>
