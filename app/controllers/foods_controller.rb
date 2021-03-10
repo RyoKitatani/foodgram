@@ -8,8 +8,12 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-    @food.save
-    @foods = Food.page(params[:page]).reverse_order
+    if @food.save
+      @foods = Food.page(params[:page]).reverse_order
+    else
+      @foods = Food.page(params[:page]).reverse_order
+      render :index
+    end
   end
 
   def destroy

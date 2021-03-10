@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
-    <div class="card w-50 mx-auto mb-5 px-auto shadow-lg d-flex justify-content-between">
+<div class="card w-25 mx-auto mt-4 shadow-lg">
       <%= link_to food_path(@food_detail) do %>
-          <%= attachment_image_tag @food_detail, :image, width: '100%', height: '100%', format: 'jpeg', class:"d-block mx-auto" %>
+          <%= attachment_image_tag @food_detail, :image, width: '95%', height: '95%', format: 'jpeg', class:"d-block mx-auto mt-3 " %>
       <% end %>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card-body">
+      <div class="card-body">
+       <div class="row">
+        <div class="col-md-2">
+          <%= attachment_image_tag @food_detail.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
+        </div>
             <p class="card-title">
               <%= link_to(food_path(@food_detail), class:"text-dark") do %>
                 <strong><i class="far fa-flag"></i><span> <%= @food_detail.shop_name %></span></strong>
@@ -18,7 +18,7 @@
                 <span><i class="fas fa-edit"></i>|<%= link_to "編集", edit_food_path %></span><br>
                 <span><i class="fas fa-trash-alt"></i> |<%= link_to "削除", food_path(@food_detail), method: :delete %></span><br>
               <% end %>
-              <span><i class="fas fa-backward"></i>　|<%= link_to "戻る", foods_path %></span>
+              <span><i class="fas fa-backward"></i>|<%= link_to "戻る", foods_path %></span>
               <% if @food_detail.liked_by?(current_user) %>
               <p>
                 <%= link_to food_likes_path(@food_detail), method: :delete do %>
@@ -34,12 +34,14 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card-body">
               <div class="new-comment">
                 <%= form_with(model:[@food_detail, @food_comment], local: true) do |f| %>
-                  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+                <div class="form-group">
+                  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class:"form-control"%>
                   <%= f.submit "送信する" %>
+                  </div>
                 <% end %>
                 <p>コメント件数：<%= @food_detail.food_comments.count %></p>
                 <% @food_detail.food_comments.each do |food_comment| %>

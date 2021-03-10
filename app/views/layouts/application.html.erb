@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <% if current_page?(root_path) %>
+            <% if current_page?(foods_path) %>
             <li class="nav-item">
               <button type="button" class='nav-link text-white btn btn-primary' data-toggle="modal" data-target="#exampleModal">
                 新規投稿
@@ -35,7 +35,7 @@
               <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-white btn btn-primary'  %>
             </li>
             <li class="nav-item">
-              <%= link_to "グルメ一覧", root_path, class: 'nav-link text-white btn btn-primary'  %>
+              <%= link_to "グルメ一覧", foods_path, class: 'nav-link text-white btn btn-primary'  %>
             </li>
           <% else %> 
             <li class="nav-item">

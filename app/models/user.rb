@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   
   attachment :profile_image
+  
 end
