@@ -1,0 +1,29 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">プロフィール編集</h5>
+      </div>
+        <%= form_with model: @user, local: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%><br>
+            <%= f.label :profile_image, "ユーザー画像" %>
+            <%= f.attachment_field :profile_image %>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, "名前"%>
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+          <div class="form-group">
+          <%= f.label :introduction, "自己紹介" %>
+          <%= f.text_area :introduction, class:"form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+        <%= link_to "戻る", user_path, class:"btn btn-secondary" %>
+         <%= f.submit "更新する", class:"btn btn-primary" %>
+        </div>
+    　　<% end %>
+    </div>
+  </div>
+</div>

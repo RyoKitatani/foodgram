@@ -1,7 +1,15 @@
-<div class="modal-dialog" role="document">
-    <div class="modal-content shadow-lg">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  投稿編集
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">投稿編集</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
         <%= form_with model: @food_detail, local: true do |f| %>
         <div class="modal-body">
@@ -19,8 +27,8 @@
           </div>
         </div>
         <div class="modal-footer">
-        <%= link_to "戻る", food_path, class:"btn btn-secondary" %>
-         <%= f.submit "更新する", class:"btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+         <%= f.submit "編集", class:"btn btn-primary" %>
         </div>
     　　<% end %>
     </div>
