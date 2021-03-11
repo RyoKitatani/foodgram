@@ -2,10 +2,14 @@
   <div class="profile-container">
     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"%><br>
     <h3 class="profile-name"><%= @user.name %></h3>
+    <div>
       <%= @user.follow_count %>
       <%= link_to "フォロー", {controller: :users,action: :follow_list,user_id: @user.id}, method: :get %>
+    </div>
+    <div>
       <%= @user.followers_count %>
       <%= link_to "フォロワー", {controller: :users,action: :follower_list,user_id: @user.id}, method: :get %>
+    </div>
         <% if current_user.id != @user.id %>
       <%= render 'users/follow_form', user: @user %>
       <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
