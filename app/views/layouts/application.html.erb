@@ -22,26 +22,29 @@
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <% if current_page?(foods_path) %>
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <button type="button" class='nav-link text-white btn btn-primary' data-toggle="modal" data-target="#exampleModal">
                 新規投稿
               </button>
             </li>
             <% end %>
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white btn btn-primary'  %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-white btn btn-primary'  %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <%= link_to "グルメ一覧", foods_path, class: 'nav-link text-white btn btn-primary'  %>
             </li>
+            <li class="nav-item mr-1">
+              <%= link_to "ユーザー一覧", users_path, class: 'nav-link text-white btn btn-primary'  %>
+            </li>
           <% else %> 
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-white btn btn-primary'  %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-1">
               <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white btn btn-primary'  %>
             </li>
           <% end %>
@@ -54,6 +57,7 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     <%= yield %>
+  
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
       <%= render "layouts/footer" %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :food_comments, only:[:create, :destroy]
     resource :likes, only: [:create, :destroy]
   end
-  resources :users, only:[:show, :edit, :update]
+  resources :users, only:[:index, :show, :edit, :update]
   
   put 'users/follow/:user_id' => 'users#follow'
   put 'users/unfollow/:user_id' => 'users#unfollow'
