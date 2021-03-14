@@ -34,7 +34,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card-body">
               <div class="new-comment">
                 <%= form_with(model:[@food_detail, @food_comment], local: true) do |f| %>
@@ -60,3 +60,56 @@
 </div>
   
   <%= render "foods/new", food: @food %>
+  
+<div class="card mb-3 mx-auto" style="max-width: 1000px;">
+  <div class="row no-gutters">
+    <div class="col-md-6">
+      <%= attachment_image_tag @food_detail, :image, width: '500', height: '500', format: 'jpeg', class:"bd-placeholder-img" %>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          <strong>店舗名：</strong>
+          <%= link_to(food_path(@food_detail), class:"text-dark") do %>
+          <i class="far fa-flag"></i><span> <%= @food_detail.shop_name %></span>
+          <% end %>
+        </p>
+        <p class="card-text">
+          <strong>説明：</strong><br>
+          <small class="text-muted"><%= @food_detail.caption %></small>
+        </p>
+        <p class="card-text">
+          <strong>created at:</strong>
+          <small class="text-muted"><%= @food.created_at %></small>
+        </p>
+        <p class="card-text">
+          <strong>updated at:</strong>
+          <small class="text-muted"><%= @food.updated_at %></small>
+        </p>
+        <% if @food_detail.user_id == current_user.id %>
+          <p><span><i class="fas fa-edit"></i>|<%= link_to "編集", edit_food_path %></span>
+          <span><i class="fas fa-trash-alt"></i> |<%= link_to "削除", food_path(@food_detail), method: :delete %></span></p>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <div class="new-comment">
+          <%= form_with(model:[@food_detail, @food_comment], local: true) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :comment, rows:'2',placeholder: "コメントをここに", class:"form-control"%>
+            <%= f.submit "送信する" %>
+            </div>
+          <% end %>
+          <p>コメント件数：<%= @food_detail.food_comments.count %></p>
+          <% @food_detail.food_comments.each do |food_comment| %>
+            <%= food_comment.user.name %>
+            <%= food_comment.created_at.strftime('%Y/%m/%d') %><%= food_comment.comment %>
+            <% if food_comment.user == current_user %>
+            <%= link_to "削除", food_food_comment_path(food_comment.food, food_comment), method: :delete %>
+            <% end %><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
