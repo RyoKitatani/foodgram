@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'users/follower_list/:user_id' => 'users#follower_list'
   #フォロー・フォロワーの一覧ページ
   
+  get '/search', to: 'searches#search'
+  
 end
