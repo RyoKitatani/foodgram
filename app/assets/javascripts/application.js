@@ -17,6 +17,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+<<<<<<< HEAD
 
 let mapInstance; 
 
@@ -26,3 +27,5 @@ function initMap() {
     zoom: 15,
   });
 }
+=======
+>>>>>>> parent of f3fac10... googlemapapi導入
