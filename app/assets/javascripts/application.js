@@ -18,7 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
-let mapInstance;
+let mapInstance; 
 
 function initMap() {
   mapInstance = new google.maps.Map(document.getElementById("map"), {
