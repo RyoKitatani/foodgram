@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
   root to: "homes#top"
   resources :foods, only:[:index, :show, :edit, :update, :create, :destroy] do
     resources :food_comments, only:[:create, :destroy]
     resource :likes, only: [:create, :destroy]
   end
   resources :users, only:[:index, :show, :edit, :update]
+  resources :maps, only:[:index]
+  get '/map_request', to: 'maps#map', as: 'map_request'
   
   put 'users/follow/:user_id' => 'users#follow'
   put 'users/unfollow/:user_id' => 'users#unfollow'
