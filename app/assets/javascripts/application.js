@@ -18,12 +18,14 @@
 //= require turbolinks
 //= require_tree .
 
+
 let mapInstance; 
+let geocoder
 
 function initMap() {
+  geocoder = new google.maps.Geocoder()
   mapInstance = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+    center: { lat: 35.681236, lng: 139.767125 },
     zoom: 15,
   });
 }
-

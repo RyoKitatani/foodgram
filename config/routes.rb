@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
   end
   resources :users, only:[:index, :show, :edit, :update]
+  resources :maps, only:[:index]   
+  get '/map_request', to: 'maps#map', as: 'map_request' #追記
   
   put 'users/follow/:user_id' => 'users#follow'
   put 'users/unfollow/:user_id' => 'users#unfollow'
